@@ -21,6 +21,7 @@ const authorization = require('../middleware/authorization');
 router.get('/', authorization, async (req, res) => {
     try {
         const notes = await notesControllers.getNotes();
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(notes);
     } catch (error) {
         console.log(error);
@@ -78,6 +79,7 @@ router.get('/', authorization, async (req, res) => {
 router.post('/create', authorization, async (req, res) => {
     try {
         const notes = await notesControllers.createNotes(req.body);
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(notes);
         console.log('Запись успешно создана.');
     } catch (error) {
@@ -117,6 +119,7 @@ router.post('/create', authorization, async (req, res) => {
 router.put('/edit/:id', authorization, async (req, res) => {
     try {
         const notes = notesControllers.editNotes(req.params.id, req.body);
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(notes);
         console.log('Запись успешно изменена.');
     } catch (error) {
@@ -150,6 +153,7 @@ router.put('/edit/:id', authorization, async (req, res) => {
 router.delete('/delete/:id', authorization, async (req, res) => {
     try {
         const notes = await notesControllers.deleteNotes(req.params.id);
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(notes);
         console.log('Запись успешно удалена.');
     } catch (error) {

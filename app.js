@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const swaggerJsDocs = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 
 const app = express();
 const apiRouter = require('./routes/api.routes');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 

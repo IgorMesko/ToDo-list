@@ -51,7 +51,6 @@ const authorization = require('../middleware/authorization');
 router.post('/registration', async (req, res) => {
     try {
         const user = await userControllers.registrationUser(req.body);
-        res.set('Access-Control-Allow-Origin', '*');
         res.json(user);
     } catch (error) {
         console.log(error);
@@ -107,7 +106,6 @@ router.post('/registration', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const user = await userControllers.loginUser(req.body);
-        res.set('Access-Control-Allow-Origin', '*');
         res.json(user);
     } catch (error) {
         console.log(error);
@@ -133,7 +131,6 @@ router.post('/login', async (req, res) => {
 router.get('/', authorization, async (req, res) => {
     try {
         const user = await userControllers.getUsers();
-        res.set('Access-Control-Allow-Origin', '*');
         res.json(user);
     } catch (error) {
         res.json({ message: error });
